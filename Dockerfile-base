@@ -19,3 +19,5 @@ LABEL \
   org.label-schema.url="https://github.com/cburgess/docker-examples"        \
   org.label-schema.vcs-url="https://github.com/cburgess/docker-examples"    \
   license="Apache-2.0"
+
+CMD ["bash"]
