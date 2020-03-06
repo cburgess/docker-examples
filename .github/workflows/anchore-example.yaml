@@ -1,0 +1,17 @@
+name: Anchore exmaple
+on:
+  pull_request:
+    types: [opened, edited]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile-curl --tag cfburgess/docker-examples:curl-latest
+    - uses: anchore/scan-action@master
+      with:
+        image-reference: "cfburgess/docker-examples:curl-latest"
+        dockerfile-path: "./Dockerfile-curl"
+    - name: anchore inline scan JSON results
+      run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
