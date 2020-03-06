@@ -1,0 +1,25 @@
+FROM debian:buster-slim
+
+LABEL maintainer=cfb@liquidreality.org
+LABEL description="Example curl image"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get -q update                               \
+&&  apt-get -y install --no-install-recommends curl \
+&&  apt-get -y autoremove                           \
+&&  apt-get -y clean                                \
+&&  rm -rf /var/lib/apt/lists/*
+
+LABEL \
+  org.label-schema.schema-version="1.0"                                     \
+  org.label-schema.vendor="Chet Burgess"                                    \
+  org.label-schema.name="Docker Examples curl"                              \
+  org.label-schema.version="latest"                                         \
+  org.label-schema.url="https://github.com/cburgess/docker-examples"        \
+  org.label-schema.vcs-url="https://github.com/cburgess/docker-examples"    \
+  license="Apache-2.0"
+
+COPY files/entrypoint-curl.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["curl"]
