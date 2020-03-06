@@ -1,0 +1,28 @@
+FROM golang:1.14.0-buster as builder
+
+LABEL maintainer=cfb@liquidreality.org
+LABEL description="Example multi-stage build"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+# Add our simple hello_world program
+COPY files/hello_world.go /go/hello_world.go
+
+# Build our go binary
+RUN cd /go && go build hello_world.go
+
+# Now build our final image
+FROM scratch
+
+COPY --from=builder /go/hello_world /hello_world
+
+LABEL \
+  org.label-schema.schema-version="1.0"                                     \
+  org.label-schema.vendor="Chet Burgess"                                    \
+  org.label-schema.name="Docker Examples Multi-stag"                        \
+  org.label-schema.version="latest"                                         \
+  org.label-schema.url="https://github.com/cburgess/docker-examples"        \
+  org.label-schema.vcs-url="https://github.com/cburgess/docker-examples"    \
+  license="Apache-2.0"
+
+CMD ["/hello_world"]
