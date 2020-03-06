@@ -6,10 +6,10 @@ LABEL description="Example curl image"
 ENV DEBIAN_FRONTEND noninteractive
 
 # Make sure we have the freshest
-RUN apt-get -q update                               \
-&&  apt-get -y install --no-install-recommends curl \
-&&  apt-get -y autoremove                           \
-&&  apt-get -y clean                                \
+RUN apt-get -q update                                       \
+&&  apt-get -y install --no-install-recommends curl python3 \
+&&  apt-get -y autoremove                                   \
+&&  apt-get -y clean                                        \
 &&  rm -rf /var/lib/apt/lists/*
 
 LABEL \
