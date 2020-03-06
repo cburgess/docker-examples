@@ -1,4 +1,4 @@
-name: Anchore exmaple
+name: Anchore example
 on:
   pull_request:
     types: [opened, edited]
