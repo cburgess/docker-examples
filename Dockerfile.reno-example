@@ -1,0 +1,16 @@
+FROM python:3.7.1
+
+LABEL maintainer=cfb@liquidreality.org
+LABEL description="Example renovate example"
+
+
+RUN pip install virtualenv
+
+LABEL \
+  org.label-schema.schema-version="1.0"                                     \
+  org.label-schema.vendor="Chet Burgess"                                    \
+  org.label-schema.name="Docker renovate example"                           \
+  org.label-schema.version="latest"                                         \
+  org.label-schema.url="https://github.com/cburgess/docker-examples"        \
+  org.label-schema.vcs-url="https://github.com/cburgess/docker-examples"    \
+  license="Apache-2.0"
