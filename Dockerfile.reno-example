@@ -1,4 +1,4 @@
-FROM python:3.7.1
+FROM python:3.12.2
 
 LABEL maintainer=cfb@liquidreality.org
 LABEL description="Example renovate example"
